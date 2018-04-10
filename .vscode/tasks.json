@@ -8,16 +8,36 @@
             "label": "cargo build",
             "command": "cargo",
             "args": [
-                "+nightly",
-                "build"
+                "build",
+                "--features",
+                "clippy,yaml",
             ],
             "problemMatcher": [
-                "$rustc"
+                "$rustc",
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
-        }
+        },
+        {
+            "type": "shell",
+            "label": "cargo run",
+            "command": "cargo",
+            "args": [
+                "run",
+                "--features",
+                "clippy,yaml",
+                "--",
+                "help"
+            ],
+            "problemMatcher": [
+                "$rustc",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
     ]
 }

@@ -2,6 +2,7 @@
 name = "genver"
 version = "0.1.0"
 authors = ["pSox <pSox-genver(a)st8l.com>"]
+description = "Gereic Version version[-pre][+build]"
 
 [dependencies]
 clippy = { version = "*", optional = true }
