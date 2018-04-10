@@ -1,0 +1,7 @@
+{
+    "cSpell.words": [
+        "clippy"
+    ],
+    "rust-client.channel": "nightly",
+    "rust-client.revealOutputChannelOn": "info",
+}
