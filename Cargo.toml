@@ -4,3 +4,6 @@ version = "0.1.0"
 authors = ["pSox <pSox-genver(a)st8l.com>"]
 
 [dependencies]
+clippy = { version = "*", optional = true }
+clap = { version = "*", features = [ "yaml" ] }
+config = { version = "*" }
