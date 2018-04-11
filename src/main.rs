@@ -4,11 +4,13 @@ extern crate config;
 
 use clap::{App, AppSettings, Arg, SubCommand};
 use config::{Config, Value};
+use std::collections::HashMap;
 
 fn main() {
+    let default = HashMap.
     let mut settings = Config::new();
     settings
-        .set_default("k1", Value::from(vec![1, 3, 4]))
+        .set_default("k1", Value::from())
         .unwrap();
 
     let matches = App::new(crate_name!())
