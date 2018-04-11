@@ -5,6 +5,9 @@ authors = ["pSox <pSox-genver(a)st8l.com>"]
 description = "Gereic Version version[-pre][+build]"
 
 [dependencies]
+serde = { version = "*" }
+serde_derive = { version = "*" }
+serde_yaml = { version = "*" }
 clippy = { version = "*", optional = true }
 config = { version = "*" }
 clap = { version = "*" }

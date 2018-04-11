@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
-        "clippy"
+        "Deserialize",
+        "clippy",
+        "serde"
     ],
     "rust-client.channel": "nightly",
     "rust-client.revealOutputChannelOn": "info",
