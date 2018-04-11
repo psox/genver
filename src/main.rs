@@ -6,7 +6,10 @@ use clap::{App, AppSettings, Arg, SubCommand};
 use config::{Config, Value};
 
 fn main() {
-    let mut settings = Config::new().set_default("test", "value");
+    let mut settings = Config::new();
+    settings
+        .set_default("k1", Value::from(vec![1, 3, 4]))
+        .unwrap();
 
     let matches = App::new(crate_name!())
         .about(crate_description!())
