@@ -11,3 +11,4 @@ serde_yaml = { version = "*" }
 clippy = { version = "*", optional = true }
 config = { version = "*" }
 clap = { version = "*" }
+yaml-rust = { version = "*" }
