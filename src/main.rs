@@ -5,6 +5,7 @@ extern crate serde_derive;
 extern crate serde_yaml;
 
 use clap::{App, AppSettings, Arg, SubCommand};
+use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug)]
 struct MinMax<T> {
@@ -14,13 +15,13 @@ struct MinMax<T> {
 
 #[derive(Serialize, Deserialize, Debug)]
 enum EntryType {
-    None,                         // nothing
-    RegEx(String),                // regular expresion
-    Exact(String),                // exact match
-    Front(String),                // front part of item
-    Back(String),                 // end part of item
-    PartType(u8, Box<EntryType>), // specific for this part
-    PartName(u8, String),         // the name of this part
+    Blank,                    // nothing
+    RegEx(String),            // regular expresion
+    Exact(String),            // exact match
+    Front(String),            // front part of item
+    Back(String),             // end part of item
+    PartType(Vec<EntryType>), // specific for this part
+    PartName(Vec<String>),    // the name of this part
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -39,42 +40,46 @@ struct GenVer {
 }
 
 fn main() {
-    let defaults = GenVer {
-        name: String::from("Semantic Versioning"),
-        separator: '.',
-        sections: vec![
-            Section {
-                name: String::from("version"),
-                parts: MinMax { min: 3, max: 3 },
-                flag: None,
-                custom: vec![
-                    EntryType::PartType(1, Box::new(EntryType::RegEx(String::from("v?\\d+")))),
-                    EntryType::PartName(1, String::from("major")),
-                    EntryType::PartType(2, Box::new(EntryType::RegEx(String::from("\\d+")))),
-                    EntryType::PartName(2, String::from("minor")),
-                    EntryType::PartType(3, Box::new(EntryType::RegEx(String::from("\\d+")))),
-                    EntryType::PartName(3, String::from("patch")),
-                ],
-            },
-            Section {
-                name: String::from("prefix"),
-                parts: MinMax { min: 1, max: 1 },
-                flag: Some('-'),
-                custom: vec![
-                    EntryType::PartType(
-                        1,
-                        Box::new(EntryType::RegEx(String::from("(alpha|beta|rc)?\\d+"))),
-                    ),
-                ],
-            },
-            Section {
-                name: String::from("build"),
-                parts: MinMax { min: 1, max: 1 },
-                flag: Some('+'),
-                custom: vec![EntryType::Front(String::from("v"))],
-            },
-        ],
-    };
+    {
+        use EntryType::*;
+        let defaults = GenVer {
+            name: String::from("Semantic Versioning"),
+            separator: '.',
+            sections: vec![
+                Section {
+                    name: String::from("version"),
+                    parts: MinMax { min: 3, max: 3 },
+                    flag: None,
+                    custom: vec![
+                        PartType(vec![
+                            RegEx(String::from("v?\\d+")),
+                            RegEx(String::from("\\d+")),
+                            RegEx(String::from("\\d+")),
+                        ]),
+                        PartName(vec![
+                            String::from("major"),
+                            String::from("minor"),
+                            String::from("patch"),
+                        ]),
+                    ],
+                },
+                Section {
+                    name: String::from("prefix"),
+                    parts: MinMax { min: 1, max: 1 },
+                    flag: Some('-'),
+                    custom: vec![PartType(vec![
+                        RegEx(String::from( "(alpha|beta|rc)?\\d+")
+                    )]),
+                },
+                Section {
+                    name: String::from("build"),
+                    parts: MinMax { min: 1, max: 1 },
+                    flag: Some('+'),
+                    custom: vec![Front(String::from("v"))],
+                },
+            ],
+        };
+    }
     let defaults_yaml = serde_yaml::to_string(&defaults).unwrap();
     //let mut settings = Config::new();
 

@@ -1,0 +1,8 @@
+SemVer: 
+  Version:
+    SplitOn: .
+    Major:
+      RegEx: v?\d+
+    Minor: 
+      Regex: \d+
+
