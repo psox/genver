@@ -39,6 +39,8 @@ struct GenVer {
     sections: Vec<Section>, // Describe each section
 }
 
+static NAME: &'static str = load_str!("examples/semver.yaml");
+
 fn main() {
     {
         use EntryType::*;

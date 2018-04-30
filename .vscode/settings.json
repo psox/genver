@@ -2,6 +2,7 @@
     "cSpell.words": [
         "Deserialize",
         "clippy",
+        "semver",
         "serde"
     ],
     "rust-client.channel": "nightly",
