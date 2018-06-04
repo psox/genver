@@ -1,8 +1,12 @@
 SemVer: 
   Version:
-    SplitOn: .
-    Major:
-      RegEx: v?\d+
-    Minor: 
-      Regex: \d+
-
+    Major: |
+      v?\\d+
+    Minor: |
+      \\.\\d+
+    Patch: |
+      \\.\\d+
+    Pre Release: |
+      (-[0-9A-Za-z-]+(\\.[0-9A-Za-z-])*)?
+    Metadata: |
+      (+[0-9A-Za-z-]+(\\.[0-9A-Za-z-])*)?
