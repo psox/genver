@@ -1,12 +1,12 @@
 SemVer: 
   Version:
-    Major: |
-      v?\\d+
-    Minor: |
-      \\.\\d+
-    Patch: |
-      \\.\\d+
-    Pre Release: |
-      (-[0-9A-Za-z-]+(\\.[0-9A-Za-z-])*)?
-    Metadata: |
-      (+[0-9A-Za-z-]+(\\.[0-9A-Za-z-])*)?
+    - Major: |
+        [0-9A-Za-z-]+\\d+
+    - Minor: |
+        \\.\\d+
+    - Patch: |
+        \\.\\d+
+    - Pre Release: |
+        (-[0-9A-Za-z-]+(\\.[0-9A-Za-z-])*)?
+    - Metadata: |
+        (+[0-9A-Za-z-]+(\\.[0-9A-Za-z-])*)?
